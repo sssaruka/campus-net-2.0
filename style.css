@@ -1,0 +1,620 @@
+/* ============================================================
+   校园网 2.0 首页样式
+   主题：清新校园蓝
+   主色 #2563EB · 页脚深蓝 #1E3A8A · 强调绿 #10B981
+   ============================================================ */
+
+/* ---------- 变量与基础 ---------- */
+:root {
+  --primary: #2563EB;        /* 校园蓝 */
+  --primary-dark: #1D4ED8;
+  --footer-bg: #1E3A8A;      /* 页脚深蓝 */
+  --accent: #10B981;         /* 强调绿 */
+  --bg: #F5F7FA;             /* 浅灰背景 */
+  --text: #1F2937;           /* 正文深灰 */
+  --text-light: #6B7280;     /* 次要浅灰 */
+  --border: #E5E7EB;         /* 边框灰 */
+  --white: #FFFFFF;
+  --radius: 12px;            /* 卡片圆角 */
+  --shadow: 0 2px 8px rgba(31, 41, 55, 0.06);
+  --shadow-hover: 0 8px 20px rgba(37, 99, 235, 0.15);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "PingFang SC", "Microsoft YaHei", "Segoe UI", sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+/* 内容容器：限制宽度并居中 */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ---------- ① 顶部导航栏 ---------- */
+.navbar {
+  position: sticky;          /* 滚动时固定在顶部 */
+  top: 0;
+  z-index: 100;
+  background: var(--white);
+  box-shadow: 0 1px 4px rgba(31, 41, 55, 0.08);
+}
+
+.navbar-inner {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  padding: 14px 20px;
+  flex-wrap: wrap;
+}
+
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.logo-icon {
+  font-size: 24px;
+}
+
+.logo-text em {
+  font-style: normal;
+  color: var(--white);
+  background: var(--primary);
+  border-radius: 6px;
+  padding: 0 6px;
+  margin-left: 4px;
+  font-size: 14px;
+}
+
+/* 导航链接 */
+.nav-links {
+  display: flex;
+  gap: 4px;
+}
+
+.nav-links a {
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 15px;
+  color: var(--text);
+  transition: background 0.2s, color 0.2s;
+}
+
+.nav-links a:hover {
+  color: var(--primary);
+  background: #EFF4FF;
+}
+
+.nav-links a.active {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+/* 全站搜索框 */
+.search-box {
+  display: flex;
+  flex: 1;
+  min-width: 220px;
+  max-width: 420px;
+}
+
+.search-box input {
+  flex: 1;
+  border: 2px solid var(--primary);
+  border-right: none;
+  border-radius: 8px 0 0 8px;
+  padding: 8px 14px;
+  font-size: 14px;
+  outline: none;
+}
+
+.search-box input:focus {
+  background: #F8FAFF;
+}
+
+.search-box button {
+  border: none;
+  background: var(--primary);
+  color: var(--white);
+  padding: 0 20px;
+  border-radius: 0 8px 8px 0;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.search-box button:hover {
+  background: var(--primary-dark);
+}
+
+/* 登录 / 注册按钮 */
+.user-actions {
+  display: flex;
+  gap: 10px;
+  margin-left: auto;
+}
+
+.btn {
+  display: inline-block;
+  padding: 7px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.btn-outline {
+  border: 1.5px solid var(--primary);
+  color: var(--primary);
+}
+
+.btn-outline:hover {
+  background: var(--primary);
+  color: var(--white);
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: var(--white);
+}
+
+.btn-primary:hover {
+  background: var(--primary-dark);
+}
+
+/* ---------- ② 公告横幅 ---------- */
+.announce-bar {
+  background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+  color: var(--white);
+  font-size: 14px;
+}
+
+.announce-inner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 20px;
+  flex-wrap: wrap;
+}
+
+.announce-icon {
+  font-size: 16px;
+}
+
+.announce-item {
+  opacity: 0.95;
+}
+
+.announce-sep {
+  opacity: 0.4;
+}
+
+.announce-more {
+  margin-left: auto;
+  color: #BFDBFE;
+  transition: color 0.2s;
+}
+
+.announce-more:hover {
+  color: var(--white);
+}
+
+/* ---------- 通用区块样式 ---------- */
+.section {
+  padding: 48px 0;
+}
+
+.section-white {
+  background: var(--white);
+}
+
+.section-light {
+  background: var(--bg);
+}
+
+/* 区块标题：左侧带蓝色小竖条 */
+.section-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.section-head h2 {
+  font-size: 24px;
+  position: relative;
+  padding-left: 14px;
+}
+
+.section-head h2::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 5px;
+  height: 20px;
+  border-radius: 3px;
+  background: var(--primary);
+}
+
+.section-sub {
+  font-size: 14px;
+  color: var(--text-light);
+  margin-top: 4px;
+  padding-left: 14px;
+}
+
+.more-link {
+  font-size: 14px;
+  color: var(--primary);
+  white-space: nowrap;
+}
+
+.more-link:hover {
+  color: var(--primary-dark);
+}
+
+/* ---------- ③ 常用快捷入口 ---------- */
+.entry-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);   /* 电脑上 4 列，共 2 行 */
+  gap: 16px;
+}
+
+.entry-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 24px 12px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+
+.entry-card:hover {
+  transform: translateY(-4px);             /* 悬停上浮 */
+  box-shadow: var(--shadow-hover);
+  border-color: var(--primary);
+}
+
+.entry-icon {
+  font-size: 34px;
+}
+
+.entry-name {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+/* ---------- ④ 企微路径导航精选 ---------- */
+.path-list {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.path-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 22px;
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+  transition: background 0.2s;
+}
+
+.path-item:last-child {
+  border-bottom: none;
+}
+
+.path-item:hover {
+  background: #F8FAFF;
+}
+
+.path-name {
+  display: block;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.path-route {
+  display: block;
+  font-size: 13px;
+  color: var(--text-light);
+  margin-top: 2px;
+}
+
+.path-meta {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.path-views {
+  font-size: 13px;
+  color: var(--text-light);
+  white-space: nowrap;
+}
+
+.path-link {
+  font-size: 14px;
+  color: var(--primary);
+  white-space: nowrap;
+}
+
+.path-link:hover {
+  text-decoration: underline;
+}
+
+/* ---------- ⑤ 真题资源区 ---------- */
+.exam-layout {
+  display: grid;
+  grid-template-columns: 2fr 1fr;    /* 左列表右分类 */
+  gap: 20px;
+  align-items: start;
+}
+
+.exam-latest,
+.exam-categories {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px 22px;
+}
+
+.panel-title {
+  font-size: 16px;
+  margin-bottom: 14px;
+}
+
+.exam-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.exam-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px dashed var(--border);
+  flex-wrap: wrap;
+}
+
+.exam-item:last-child {
+  border-bottom: none;
+}
+
+.exam-meta {
+  display: block;
+  font-size: 13px;
+  color: var(--text-light);
+  margin-top: 4px;
+}
+
+.exam-stats {
+  display: flex;
+  gap: 12px;
+  font-size: 13px;
+  color: var(--text-light);
+  white-space: nowrap;
+}
+
+/* 科目标签：不同颜色的小药丸 */
+.tag {
+  display: inline-block;
+  font-size: 13px;
+  padding: 3px 12px;
+  border-radius: 999px;
+}
+
+.tag-blue   { background: #DBEAFE; color: #1D4ED8; }
+.tag-green  { background: #D1FAE5; color: #047857; }
+.tag-purple { background: #EDE9FE; color: #6D28D9; }
+.tag-orange { background: #FFEDD5; color: #C2410C; }
+
+/* 右侧科目分类 */
+.category-tags {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.category-tags .tag {
+  text-align: center;
+  padding: 8px 6px;
+  transition: transform 0.15s, filter 0.15s;
+}
+
+.category-tags .tag:hover {
+  transform: translateY(-2px);
+  filter: brightness(0.96);
+}
+
+.upload-btn {
+  display: block;
+  text-align: center;
+  margin-top: 16px;
+  padding: 10px;
+  border: 2px dashed var(--accent);
+  border-radius: 10px;
+  color: var(--accent);
+  font-size: 14px;
+  font-weight: 500;
+  transition: background 0.2s, color 0.2s;
+}
+
+.upload-btn:hover {
+  background: var(--accent);
+  color: var(--white);
+}
+
+/* ---------- ⑥ 校园社区动态 ---------- */
+.community-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);   /* 三栏并列 */
+  gap: 20px;
+}
+
+.community-col {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 20px 22px;
+}
+
+.community-title {
+  font-size: 16px;
+  padding-bottom: 12px;
+  margin-bottom: 8px;
+  border-bottom: 2px solid var(--bg);
+}
+
+.community-item {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 6px;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+
+.community-item:hover {
+  background: #F8FAFF;
+}
+
+.item-name {
+  font-size: 14px;
+  color: var(--text);
+}
+
+.item-meta {
+  font-size: 12px;
+  color: var(--text-light);
+  margin-top: 2px;
+}
+
+/* ---------- ⑦ 页脚 ---------- */
+.footer {
+  background: var(--footer-bg);
+  color: #DBEAFE;
+  padding: 32px 0;
+}
+
+.footer-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+}
+
+.footer-brand {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--white);
+}
+
+.footer-slogan {
+  font-size: 13px;
+  font-weight: 400;
+  color: #93C5FD;
+  margin-left: 10px;
+}
+
+.footer-links {
+  display: flex;
+  gap: 24px;
+}
+
+.footer-links a {
+  font-size: 14px;
+  color: #BFDBFE;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover {
+  color: var(--white);
+  text-decoration: underline;
+}
+
+.footer-copy {
+  font-size: 12px;
+  color: #93C5FD;
+}
+
+/* ---------- 响应式：平板 ---------- */
+@media (max-width: 900px) {
+  .entry-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .exam-layout {
+    grid-template-columns: 1fr;      /* 上下堆叠 */
+  }
+
+  .community-grid {
+    grid-template-columns: 1fr;      /* 三栏变一栏 */
+  }
+
+  .search-box {
+    order: 10;                        /* 搜索框换行铺满 */
+    max-width: none;
+    flex-basis: 100%;
+  }
+}
+
+/* ---------- 响应式：手机 ---------- */
+@media (max-width: 560px) {
+  .nav-links {
+    display: none;                    /* 小屏隐藏次要导航 */
+  }
+
+  .section {
+    padding: 32px 0;
+  }
+
+  .section-head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .user-actions {
+    margin-left: 0;
+  }
+
+  .path-meta {
+    gap: 12px;
+  }
+}
