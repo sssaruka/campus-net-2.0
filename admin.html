@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="校园网 2.0 管理后台">
+  <title>校园网 2.0 · 管理后台</title>
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+  <!-- 顶部条 -->
+  <header class="admin-top">
+    <div class="admin-top-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">🏫</span>
+        <span class="logo-text">校园网<em>2.0</em></span>
+      </a>
+      <span class="top-divider"></span>
+      <span class="top-title">管理后台</span>
+
+      <div class="top-right">
+        <span class="top-user">👤 管理员 · 郑同学</span>
+        <a href="index.html" class="btn btn-ghost">← 返回前台</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- 主体：侧边功能菜单 + 内容区 -->
+  <div class="admin-body">
+    <aside class="admin-side">
+      <p class="side-title">功能模块</p>
+      <nav class="side-nav" id="sideNav">
+        <a href="#/home"    data-view="home">    <span>📊</span> 后台概览</a>
+        <a href="#/quick"   data-view="quick">   <span>⚡</span> 快捷入口</a>
+        <a href="#/paths"   data-view="paths">   <span>🧭</span> 企微路径</a>
+        <a href="#/exams"   data-view="exams">   <span>📚</span> 真题资源</a>
+        <a href="#/posts"   data-view="posts">   <span>💬</span> 校园社区</a>
+        <a href="#/users"   data-view="users">   <span>👥</span> 用户中心</a>
+        <a href="#/settings" data-view="settings"><span>⚙️</span> 公告与设置</a>
+      </nav>
+      <div class="side-foot">
+        <button type="button" class="btn btn-danger-ghost" data-act="reset-data">恢复默认数据</button>
+      </div>
+    </aside>
+
+    <main class="admin-main" id="view"></main>
+  </div>
+
+  <!-- 弹窗与提示挂载点 -->
+  <div id="modalRoot"></div>
+  <div id="toastRoot"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

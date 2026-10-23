@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="校内网 2.0 —— 面向本校学生的校园综合服务网站：企微路径导航、往年真题资源库、校园社区">
   <title>校园网 2.0 | 校园综合服务平台</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
@@ -13,347 +13,150 @@
   <header class="navbar">
     <div class="container navbar-inner">
 
-      <a href="#" class="logo">
+      <a href="index.html" class="logo">
         <span class="logo-icon">🏫</span>
         <span class="logo-text">校园网<em>2.0</em></span>
       </a>
 
       <nav class="nav-links">
-        <a href="#" class="active">首页</a>
-        <a href="#">企微路径导航</a>
-        <a href="#">真题资源库</a>
-        <a href="#">校园社区</a>
+        <a href="index.html" class="active">首页</a>
+        <a href="#panel-path">企微路径</a>
+        <a href="#panel-exam">真题资源</a>
+        <a href="#panel-post">校园社区</a>
       </nav>
 
       <div class="search-box">
-        <input type="text" placeholder="搜索路径 / 真题 / 帖子，如：请假">
-        <button type="button">搜索</button>
+        <input type="text" id="searchInput" placeholder="搜索路径 / 真题 / 帖子，如：请假">
+        <button type="button" id="searchBtn">搜索</button>
+      </div>
+
+      <div class="school-select">
+        <span class="school-label">🏫</span>
+        <select id="schoolSelect" aria-label="选择学校">
+          <option value="中山大学">中山大学</option>
+          <option value="华南理工大学">华南理工大学</option>
+        </select>
       </div>
 
       <div class="user-actions">
-        <a href="#" class="btn btn-outline">登录</a>
-        <a href="#" class="btn btn-primary">注册</a>
+        <a href="register.html" class="btn btn-outline">注册 / 登录</a>
+        <a href="admin.html" class="btn btn-primary">后台管理</a>
       </div>
 
     </div>
   </header>
 
-  <!-- ② 公告横幅 -->
-  <div class="announce-bar">
-    <div class="container announce-inner">
-      <span class="announce-icon">📢</span>
-      <span class="announce-item">新学期真题已上线，欢迎下载</span>
-      <span class="announce-sep">|</span>
-      <span class="announce-item">「场馆预约」路径已变更，点击查看新路径</span>
-      <a href="#" class="announce-more">全部公告 →</a>
+  <!-- ② 首屏：大 Banner 轮播 + 公告大卡 + 右侧个人面板（自适应撑满一屏） -->
+  <section class="hero">
+    <div class="container hero-grid">
+
+      <!-- 大 Banner 轮播：新手指引 -->
+      <div class="banner" id="banner">
+        <div class="banner-track" id="bannerTrack">
+          <div class="banner-slide slide-1">
+            <span class="banner-en">WELCOME</span>
+            <h1>教你正确使用校内网</h1>
+            <p>入站必看！！！找入口 · 找资料 · 找信息，一站完成</p>
+            <span class="banner-btn">开始浏览 ↓</span>
+          </div>
+          <div class="banner-slide slide-2">
+            <span class="banner-en">EXAM BANK</span>
+            <h1>历年期末真题免费下载</h1>
+            <p>高等数学、数据结构、大学英语……学长学姐留下的宝藏</p>
+            <a class="banner-btn" href="#panel-exam">进入真题库 →</a>
+          </div>
+          <div class="banner-slide slide-3">
+            <span class="banner-en">COMMUNITY</span>
+            <h1>校园社区 · 互助大家庭</h1>
+            <p>二手交易 · 失物招领 · 学习交流，有困难找同学</p>
+            <a class="banner-btn" href="#panel-post">去逛逛 →</a>
+          </div>
+        </div>
+        <button type="button" class="banner-arrow prev" id="bannerPrev" aria-label="上一张">‹</button>
+        <button type="button" class="banner-arrow next" id="bannerNext" aria-label="下一张">›</button>
+        <div class="banner-dots" id="bannerDots"></div>
+      </div>
+
+      <!-- 公告大卡（纵向堆叠，数据来自后台公告配置） -->
+      <div class="announce-cards" id="announceCards"></div>
+
+      <!-- 右侧：个人面板 + 快捷入口宫格 -->
+      <aside class="side-panel">
+        <div class="user-card">
+          <div class="user-avatar">🎓</div>
+          <div class="user-name">你好，同学</div>
+          <div class="user-sub">登录后可上传真题、发帖交流</div>
+          <a href="#" class="btn btn-primary btn-block">立即登录</a>
+        </div>
+        <div class="quick-panel">
+          <div class="side-title"><span class="dot"></span>常用快捷入口</div>
+          <div class="quick-grid" id="quickItems"></div>
+        </div>
+      </aside>
+
     </div>
-  </div>
+  </section>
 
   <main>
 
-    <!-- ③ 常用快捷入口 -->
-    <section class="section section-white">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <h2>常用快捷入口</h2>
-            <p class="section-sub">企业微信高频功能，点击直达路径详情</p>
+    <!-- ③ 第二屏：三大板块并排 -->
+    <section class="section section-main">
+      <div class="container triple">
+
+        <!-- 企微路径导航 -->
+        <div class="panel" id="panel-path">
+          <div class="panel-head">
+            <h2>企微路径导航</h2>
+            <a href="#" class="more-link">全部 →</a>
           </div>
+          <ul class="mini-list" id="pathList"></ul>
         </div>
 
-        <div class="entry-grid">
-          <a href="#" class="entry-card">
-            <span class="entry-icon">📝</span>
-            <span class="entry-name">请假申请</span>
-          </a>
-          <a href="#" class="entry-card">
-            <span class="entry-icon">🔧</span>
-            <span class="entry-name">宿舍报修</span>
-          </a>
-          <a href="#" class="entry-card">
-            <span class="entry-icon">💳</span>
-            <span class="entry-name">在线缴费</span>
-          </a>
-          <a href="#" class="entry-card">
-            <span class="entry-icon">🏀</span>
-            <span class="entry-name">场馆预约</span>
-          </a>
-          <a href="#" class="entry-card">
-            <span class="entry-icon">📜</span>
-            <span class="entry-name">证明开具</span>
-          </a>
-          <a href="#" class="entry-card">
-            <span class="entry-icon">🪪</span>
-            <span class="entry-name">校园卡挂失</span>
-          </a>
-          <a href="#" class="entry-card">
-            <span class="entry-icon">📚</span>
-            <span class="entry-name">图书续借</span>
-          </a>
-          <a href="#" class="entry-card">
-            <span class="entry-icon">📊</span>
-            <span class="entry-name">成绩查询</span>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ④ 企微路径导航精选 -->
-    <section class="section section-light">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <h2>企微路径导航精选</h2>
-            <p class="section-sub">最新、最热门的办事路径指引</p>
-          </div>
-          <a href="#" class="more-link">全部路径 →</a>
-        </div>
-
-        <ul class="path-list">
-          <li class="path-item">
-            <div class="path-info">
-              <span class="path-name">学生请假申请</span>
-              <span class="path-route">企业微信 → 工作台 → 学生事务服务 → 请假申请</span>
-            </div>
-            <div class="path-meta">
-              <span class="path-views">🔥 2.3k 浏览</span>
-              <a href="#" class="path-link">查看完整路径</a>
-            </div>
-          </li>
-          <li class="path-item">
-            <div class="path-info">
-              <span class="path-name">宿舍设施报修</span>
-              <span class="path-route">企业微信 → 工作台 → 后勤服务 → 我要报修</span>
-            </div>
-            <div class="path-meta">
-              <span class="path-views">🔥 1.8k 浏览</span>
-              <a href="#" class="path-link">查看完整路径</a>
-            </div>
-          </li>
-          <li class="path-item">
-            <div class="path-info">
-              <span class="path-name">学费 / 住宿费缴纳</span>
-              <span class="path-route">企业微信 → 工作台 → 财务缴费 → 学费缴纳</span>
-            </div>
-            <div class="path-meta">
-              <span class="path-views">🔥 1.5k 浏览</span>
-              <a href="#" class="path-link">查看完整路径</a>
-            </div>
-          </li>
-          <li class="path-item">
-            <div class="path-info">
-              <span class="path-name">体育馆场地预约</span>
-              <span class="path-route">企业微信 → 工作台 → 场馆预约 → 羽毛球 / 篮球</span>
-            </div>
-            <div class="path-meta">
-              <span class="path-views">🔥 1.2k 浏览</span>
-              <a href="#" class="path-link">查看完整路径</a>
-            </div>
-          </li>
-          <li class="path-item">
-            <div class="path-info">
-              <span class="path-name">在校证明开具</span>
-              <span class="path-route">企业微信 → 工作台 → 证明服务 → 在校证明</span>
-            </div>
-            <div class="path-meta">
-              <span class="path-views">🔥 986 浏览</span>
-              <a href="#" class="path-link">查看完整路径</a>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- ⑤ 真题资源区 -->
-    <section class="section section-white">
-      <div class="container">
-        <div class="section-head">
-          <div>
+        <!-- 真题资源库 -->
+        <div class="panel" id="panel-exam">
+          <div class="panel-head">
             <h2>真题资源库</h2>
-            <p class="section-sub">各科目往年真题统一归档，一届帮一届</p>
+            <a href="#" class="more-link">进入 →</a>
           </div>
-          <a href="#" class="more-link">进入资源库 →</a>
+          <ul class="mini-list" id="examList"></ul>
+          <div class="panel-foot">
+            <div class="cat-tags" id="examCats"></div>
+            <a href="#" class="upload-btn">＋ 上传真题</a>
+          </div>
         </div>
 
-        <div class="exam-layout">
-
-          <div class="exam-latest">
-            <h3 class="panel-title">最新上传</h3>
-            <ul class="exam-list">
-              <li class="exam-item">
-                <div class="exam-info">
-                  <span class="exam-name"><span class="tag tag-blue">高等数学 A（一）</span></span>
-                  <span class="exam-meta">2025-2026 学年 · 第一学期 · 提供者：李同学</span>
-                </div>
-                <div class="exam-stats">
-                  <span>⬇ 356</span>
-                  <span>👍 128</span>
-                </div>
-              </li>
-              <li class="exam-item">
-                <div class="exam-info">
-                  <span class="exam-name"><span class="tag tag-green">数据结构</span></span>
-                  <span class="exam-meta">2024-2025 学年 · 第二学期 · 提供者：王同学</span>
-                </div>
-                <div class="exam-stats">
-                  <span>⬇ 298</span>
-                  <span>👍 102</span>
-                </div>
-              </li>
-              <li class="exam-item">
-                <div class="exam-info">
-                  <span class="exam-name"><span class="tag tag-purple">大学英语（四）</span></span>
-                  <span class="exam-meta">2024-2025 学年 · 第一学期 · 提供者：陈同学</span>
-                </div>
-                <div class="exam-stats">
-                  <span>⬇ 271</span>
-                  <span>👍 95</span>
-                </div>
-              </li>
-              <li class="exam-item">
-                <div class="exam-info">
-                  <span class="exam-name"><span class="tag tag-orange">线性代数</span></span>
-                  <span class="exam-meta">2024-2025 学年 · 第一学期 · 提供者：赵同学</span>
-                </div>
-                <div class="exam-stats">
-                  <span>⬇ 233</span>
-                  <span>👍 88</span>
-                </div>
-              </li>
-            </ul>
+        <!-- 校园社区 -->
+        <div class="panel" id="panel-post">
+          <div class="panel-head">
+            <h2>校园社区</h2>
+            <a href="#" class="more-link">进入 →</a>
           </div>
-
-          <aside class="exam-categories">
-            <h3 class="panel-title">按科目快速查找</h3>
-            <div class="category-tags">
-              <a href="#" class="tag tag-blue">高等数学</a>
-              <a href="#" class="tag tag-green">数据结构</a>
-              <a href="#" class="tag tag-purple">大学英语</a>
-              <a href="#" class="tag tag-orange">线性代数</a>
-              <a href="#" class="tag tag-blue">概率论与数理统计</a>
-              <a href="#" class="tag tag-green">大学物理</a>
-              <a href="#" class="tag tag-purple">C 语言程序设计</a>
-              <a href="#" class="tag tag-orange">计算机网络</a>
-            </div>
-            <a href="#" class="upload-btn">＋ 上传我手里的真题</a>
-          </aside>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ⑥ 校园社区动态 -->
-    <section class="section section-light">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <h2>校园社区动态</h2>
-            <p class="section-sub">二手交易 · 失物招领 · 学习交流</p>
-          </div>
-          <a href="#" class="more-link">进入社区 →</a>
+          <div class="board-tabs" id="boardTabs"></div>
+          <ul class="post-list" id="postList"></ul>
         </div>
 
-        <div class="community-grid">
-
-          <div class="community-col">
-            <h3 class="community-title">🛒 二手交易</h3>
-            <ul class="community-list">
-              <li>
-                <a href="#" class="community-item">
-                  <span class="item-name">九成新自行车（毕业甩卖）</span>
-                  <span class="item-meta">¥120 · 10 分钟前</span>
-                </a>
-              </li>
-              <li>
-                <a href="#" class="community-item">
-                  <span class="item-name">Kindle Paperwhite 4</span>
-                  <span class="item-meta">¥350 · 1 小时前</span>
-                </a>
-              </li>
-              <li>
-                <a href="#" class="community-item">
-                  <span class="item-name">高数课本 + 习题册全套</span>
-                  <span class="item-meta">¥15 · 3 小时前</span>
-                </a>
-              </li>
-              <li>
-                <a href="#" class="community-item">
-                  <span class="item-name">宿舍台灯（九成新）</span>
-                  <span class="item-meta">¥25 · 昨天</span>
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <div class="community-col">
-            <h3 class="community-title">🔎 失物招领</h3>
-            <ul class="community-list">
-              <li>
-                <a href="#" class="community-item">
-                  <span class="item-name">【拾物】南苑食堂捡到校园卡一张</span>
-                  <span class="item-meta">待认领 · 30 分钟前</span>
-                </a>
-              </li>
-              <li>
-                <a href="#" class="community-item">
-                  <span class="item-name">【寻物】蓝色保温杯，疑似落在一教</span>
-                  <span class="item-meta">寻找中 · 2 小时前</span>
-                </a>
-              </li>
-              <li>
-                <a href="#" class="community-item">
-                  <span class="item-name">【拾物】图书馆四楼捡到 AirPods 一只</span>
-                  <span class="item-meta">待认领 · 昨天</span>
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <div class="community-col">
-            <h3 class="community-title">💬 学习交流</h3>
-            <ul class="community-list">
-              <li>
-                <a href="#" class="community-item">
-                  <span class="item-name">数据结构期末复习经验分享</span>
-                  <span class="item-meta">经验分享 · 42 回帖</span>
-                </a>
-              </li>
-              <li>
-                <a href="#" class="community-item">
-                  <span class="item-name">挑战杯组队，求小程序方向队友</span>
-                  <span class="item-meta">组队互助 · 15 回帖</span>
-                </a>
-              </li>
-              <li>
-                <a href="#" class="community-item">
-                  <span class="item-name">大二选课建议求教（附培养方案）</span>
-                  <span class="item-meta">课程问答 · 28 回帖</span>
-                </a>
-              </li>
-            </ul>
-          </div>
-
-        </div>
       </div>
     </section>
 
   </main>
 
-  <!-- ⑦ 页脚 -->
+  <!-- ④ 页脚（紧凑单行） -->
   <footer class="footer">
     <div class="container footer-inner">
-      <div class="footer-brand">
-        <span class="logo-icon">🏫</span> 校园网 2.0
+      <div class="footer-left">
+        <span class="footer-brand">🏫 校园网 2.0</span>
         <span class="footer-slogan">找入口 · 找资料 · 找信息，一站完成</span>
       </div>
       <nav class="footer-links">
         <a href="#">关于我们</a>
         <a href="#">意见反馈</a>
-        <a href="#">管理入口</a>
+        <a href="admin.html">管理入口</a>
       </nav>
       <p class="footer-copy">© 2026 校园网 2.0 项目组 · 仅供校内学习交流使用</p>
     </div>
   </footer>
 
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="校内网 2.0 —— 校园社区练习页：发帖、列表渲染、实时搜索">
+  <title>校园社区（练习页） | 校园网 2.0</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- 顶部导航（与首页同款） -->
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">🏫</span>
+        <span class="logo-text">校园网<em>2.0</em></span>
+      </a>
+      <nav class="nav-links">
+        <a href="index.html">首页</a>
+        <a href="register.html">注册练习页</a>
+      </nav>
+      <div class="user-actions">
+        <a href="index.html" class="btn btn-outline">← 返回首页</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="page-wrap wide">
+
+    <h1 class="page-title">校园社区</h1>
+    <p class="page-sub">发帖立即上墙 · 数据存在浏览器本地 · 支持实时搜索和版块筛选</p>
+
+    <!-- 发帖表单 -->
+    <form class="form-card post-form" id="postForm" novalidate>
+      <div class="form-grid">
+        <div class="form-row">
+          <label for="postBoard">版块</label>
+          <select class="form-input" id="postBoard">
+            <option>二手交易</option>
+            <option>失物招领</option>
+            <option>学习交流</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label for="postAuthor">昵称</label>
+          <input class="form-input" type="text" id="postAuthor" placeholder="你的昵称">
+        </div>
+        <div class="form-row span2">
+          <label for="postTitle">标题</label>
+          <input class="form-input" type="text" id="postTitle" placeholder="一句话说清主题">
+        </div>
+        <div class="form-row span2">
+          <label for="postContent">正文</label>
+          <textarea class="form-input" id="postContent" placeholder="详细说说……"></textarea>
+        </div>
+      </div>
+      <button type="submit" class="btn-submit">发 布</button>
+    </form>
+
+    <!-- 搜索 + 版块筛选工具条 -->
+    <div class="community-toolbar">
+      <input class="form-input search-input" type="text" id="searchInput" placeholder="搜索标题或正文，输入即过滤…">
+      <select class="form-input" id="boardFilter">
+        <option>全部</option>
+        <option>二手交易</option>
+        <option>失物招领</option>
+        <option>学习交流</option>
+      </select>
+    </div>
+
+    <!-- 帖子列表（由 JS 渲染） -->
+    <div class="community-list" id="postList"></div>
+
+  </div>
+
+  <script src="js/community.js"></script>
+</body>
+</html>

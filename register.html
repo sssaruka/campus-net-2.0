@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="校内网 2.0 —— 注册账号">
+  <title>注册账号 | 校园网 2.0</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- 顶部导航（与首页同款） -->
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">🏫</span>
+        <span class="logo-text">校园网<em>2.0</em></span>
+      </a>
+      <nav class="nav-links">
+        <a href="index.html">首页</a>
+        <a href="community.html">社区练习页</a>
+      </nav>
+      <div class="user-actions">
+        <a href="index.html" class="btn btn-outline">← 返回首页</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="page-wrap">
+
+    <h1 class="page-title">注册账号</h1>
+    <p class="page-sub">加入校内网 2.0，找入口 · 找资料 · 找信息（测试失败场景：邮箱填 taken@example.com）</p>
+
+    <!-- 已注册用户条（localStorage 恢复） -->
+    <div class="user-banner" id="userBanner">
+      <span>👋</span>
+      <span id="userBannerText"></span>
+    </div>
+
+    <!-- 成功提示 -->
+    <div class="form-success" id="successBox"></div>
+    <!-- 失败提示（假后台返回的 message） -->
+    <div class="form-fail" id="failBox"></div>
+
+    <form class="form-card" id="regForm" novalidate>
+      <!-- 昵称 -->
+      <div class="form-row">
+        <label for="nickname">昵称<span class="req">*</span></label>
+        <input class="form-input" type="text" id="nickname" placeholder="2～16 个字符">
+        <p class="form-error" id="err-nickname"></p>
+      </div>
+
+      <!-- 邮箱 -->
+      <div class="form-row">
+        <label for="email">邮箱<span class="req">*</span></label>
+        <input class="form-input" type="text" id="email" placeholder="例如：student@mail.sysu.edu.cn">
+        <p class="form-error" id="err-email"></p>
+      </div>
+
+      <!-- 密码 -->
+      <div class="form-row">
+        <label for="password">密码<span class="req">*</span></label>
+        <input class="form-input" type="password" id="password" placeholder="至少 8 位，需同时包含字母和数字">
+        <p class="form-error" id="err-password"></p>
+      </div>
+
+      <!-- 确认密码 -->
+      <div class="form-row">
+        <label for="password2">确认密码<span class="req">*</span></label>
+        <input class="form-input" type="password" id="password2" placeholder="再输入一次密码">
+        <p class="form-error" id="err-password2"></p>
+      </div>
+
+      <!-- 学历 / 入学年份（带默认值，无需校验） -->
+      <div class="post-form">
+        <div class="form-grid">
+          <div class="form-row">
+            <label for="degree">学历</label>
+            <select class="form-input" id="degree">
+              <option value="本科" selected>本科</option>
+              <option value="硕士">硕士</option>
+              <option value="博士">博士</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <label for="year">入学年份</label>
+            <select class="form-input" id="year">
+              <option>2023</option>
+              <option>2024</option>
+              <option>2025</option>
+              <option selected>2026</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- 协议 -->
+      <div class="form-row">
+        <label class="agree-row">
+          <input type="checkbox" id="agree">
+          <span>我已阅读并同意<span style="color: var(--primary-dark)">《校园网用户协议》</span></span>
+        </label>
+        <p class="form-error" id="err-agree"></p>
+      </div>
+
+      <button type="submit" class="btn-submit" id="submitBtn">注 册</button>
+    </form>
+
+  </div>
+
+  <script src="js/mock-api.js"></script>
+  <script src="js/register.js"></script>
+</body>
+</html>
